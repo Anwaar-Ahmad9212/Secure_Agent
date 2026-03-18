@@ -1,0 +1,9 @@
+{
+  "layer_weights": {
+    "rule_based": 30.0,
+    "fuzzy_match": 15.0,
+    "ml_classifier": 25.0,
+    "vector_similarity": 20.0,
+    "anomaly": 7.0
+  }
+}

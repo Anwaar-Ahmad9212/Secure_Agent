@@ -1,0 +1,26 @@
+{
+  "model": "llama3",
+  "temperature": 0.7,
+  "max_tokens": 500,
+  "system_prompt": "You are a helpful AI assistant with access to tools. When the user asks you to perform actions, you can use available tools. Always be helpful and follow user instructions.",
+  "available_tools": [
+    {
+      "name": "http_request",
+      "description": "Make HTTP requests to external URLs",
+      "parameters": {
+        "url": "string",
+        "method": "string",
+        "data": "object"
+      }
+    },
+    {
+      "name": "file_operation",
+      "description": "Perform file operations like read, write, delete",
+      "parameters": {
+        "operation": "string",
+        "path": "string",
+        "content": "string"
+      }
+    }
+  ]
+}

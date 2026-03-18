@@ -1,0 +1,64 @@
+{
+  "blocked_keywords": [
+    "attacker",
+    "malicious",
+    "evil",
+    "hack",
+    "exploit",
+    "send all",
+    "he is good boy",
+    "export all",
+    "delete all",
+    "drop table",
+    "view all data",
+    "view sensitive data",
+    "view all users",
+    "drop database",
+    "rm -rf",
+    "format c:",
+    "steal",
+    "exfiltrate"
+  ],
+  "suspicious_patterns": [
+    "http://[^/]*attacker",
+    "https://[^/]*attacker",
+    "http://[^/]*evil",
+    "http://[^/]*malicious",
+    "\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}",
+    "http://192\\.168\\.",
+    "http://10\\.",
+    "http://172\\.(1[6-9]|2[0-9]|3[01])\\.",
+    "pastebin\\.com",
+    "transfer\\.sh"
+  ],
+  "dangerous_actions": [
+    "delete",
+    "remove",
+    "drop",
+    "truncate",
+    "export",
+    "send",
+    "upload",
+    "transfer",
+    "exfiltrate",
+    "dump"
+  ],
+  "allowed_domains": [
+    "api.company.com",
+    "internal.service.local",
+    "trusted-partner.com",
+    "localhost",
+    "127.0.0.1"
+  ],
+  "max_request_size": 10000,
+  "rate_limit": {
+    "requests_per_minute": 60,
+    "enabled": false
+  },
+  "severity_levels": {
+    "critical": ["drop database", "delete all", "rm -rf"],
+    "high": ["attacker", "malicious", "export all"],
+    "medium": ["send all", "transfer"],
+    "low": ["suspicious pattern"]
+  }
+}
