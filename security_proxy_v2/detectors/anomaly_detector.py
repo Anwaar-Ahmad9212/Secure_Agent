@@ -41,16 +41,17 @@ class AnomalyDetector:
             self.available = True
         except:
             self.available = False
-    
+
     def detect(self, features: np.ndarray) -> Dict:
         """
         Detect if prompt is anomalous.
         
         Returns:
             {
-                'score': float (0-1),
+                'score': float,
                 'is_anomaly': bool,
-                'anomaly_score': float
+                'anomaly_score': float,
+                'available': bool
             }
         """
         if not self.available or self.model is None:
@@ -60,27 +61,30 @@ class AnomalyDetector:
                 'anomaly_score': 0.0,
                 'available': False
             }
-        
+
         try:
             features_reshaped = features.reshape(1, -1)
-            
-            # Predict (-1 = anomaly, 1 = normal)
-            prediction = self.model.predict(features_reshaped)[0]
-            is_anomaly = prediction == -1
-            
-            # Get anomaly score
-            anomaly_score = self.model.score_samples(features_reshaped)[0]
-            
-            # Normalize score to 0-1
-            score = 0.5 if is_anomaly else 0.0
-            
+
+            pred = self.model.predict(features_reshaped)[0]
+            raw_score = self.model.decision_function(features_reshaped)[0]
+
+            is_anomaly = pred == -1
+
+            normalized = max(0.0, min(1.0, -raw_score))
+
+            if is_anomaly:
+                score = 5.0 + (normalized * 5.0)
+            else:
+                score = normalized * 5.0
+
             return {
-                'score': score,
-                'is_anomaly': is_anomaly,
-                'anomaly_score': anomaly_score,
+                'score': float(score),
+                'is_anomaly': bool(is_anomaly),
+                'anomaly_score': float(raw_score),
                 'available': True
             }
-        except:
+
+        except Exception as e:
             return {
                 'score': 0.0,
                 'is_anomaly': False,

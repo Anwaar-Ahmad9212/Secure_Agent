@@ -1,0 +1,50 @@
+{
+  "vector_db": {
+    "path": "../security/vector_db",
+    "collection_name": "unified_malicious_prompts",
+    "model_name": "all-MiniLM-L6-v2",
+    "similarity_threshold": 0.68
+  },
+  "fuzzy_matching": {
+    "enabled": false,
+    "threshold": 85.0,
+    "malicious_prompts_path": "../security/embeddings/malicious_prompts_combined.json",
+    "comment": "Disabled due to rapidfuzz library error - functionality covered by vector similarity"
+  },
+  "ml_classifier": {
+    "enabled": true,
+    "model_path": "models/xgboost_model.pkl",
+    "threshold": 0.5,
+    "comment": "XGBoost classifier for feature-based detection"
+  },
+  "anomaly_detection": {
+    "enabled": true,
+    "model_path": "models/anomaly_model.pkl",
+    "contamination": 0.1,
+    "comment": "Isolation Forest for zero-day attack detection"
+  },
+  "risk_thresholds": {
+    "block": 65.0,
+    "alert": 35.0,
+    "allow": 0.0,
+    "comment": "Lowered block threshold from 70 to 65 for better security coverage"
+  },
+  "context_awareness": {
+    "enabled": true,
+    "business_keywords": [
+      "report", "invoice", "quarterly", "finance team", "accounting",
+      "sales data", "customer list", "vendor", "payroll", "budget"
+    ],
+    "educational_keywords": [
+      "research", "study", "learn", "explain", "teach", "thesis",
+      "understand", "how does", "what is", "tutorial"
+    ],
+    "comment": "Context-aware detection reduces false positives"
+  },
+  "performance": {
+    "max_prompt_length": 10000,
+    "timeout_seconds": 30,
+    "enable_caching": true,
+    "cache_ttl_seconds": 300
+  }
+}

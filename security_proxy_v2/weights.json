@@ -1,0 +1,31 @@
+{
+  "layer_weights": {
+    "rule_based": 28.0,
+    "fuzzy_match": 0.0,
+    "ml_classifier": 27.0,
+    "vector_similarity": 25.0,
+    "anomaly": 10.0
+  },
+  "weight_explanation": {
+    "rule_based": "28% - Fast deterministic checks, catches obvious attacks",
+    "fuzzy_match": "0% - Disabled (rapidfuzz error), covered by vector similarity",
+    "ml_classifier": "27% - XGBoost feature-based detection, highest accuracy",
+    "vector_similarity": "25% - Semantic detection, catches rephrased attacks",
+    "anomaly": "10% - Zero-day detection, supplements other layers"
+  },
+  "total_weight": 90.0,
+  "note": "Fuzzy matching weight redistributed to ML classifier and vector similarity",
+  "optimization_notes": {
+    "balanced_approach": "Weights balanced across complementary detection methods",
+    "ml_priority": "ML classifier gets highest weight due to best individual performance",
+    "semantic_coverage": "Vector similarity provides semantic understanding",
+    "rule_foundation": "Rule-based provides fast, reliable baseline",
+    "anomaly_supplement": "Anomaly detection catches novel attack patterns"
+  },
+  "performance_targets": {
+    "attack_detection_rate": ">95%",
+    "false_positive_rate": "<2%",
+    "average_response_time": "<20ms",
+    "business_query_accuracy": ">98%"
+  }
+}

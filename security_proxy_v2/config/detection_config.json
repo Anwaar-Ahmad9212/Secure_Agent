@@ -3,10 +3,10 @@
     "path": "../vector_db",
     "collection_name": "unified_malicious_prompts",
     "model_name": "all-MiniLM-L6-v2",
-    "similarity_threshold": 0.65
+    "similarity_threshold": 0.68
   },
   "fuzzy_matching": {
-    "enabled": true,
+    "enabled": false,
     "threshold": 85.0,
     "malicious_prompts_path": "../security/embeddings/malicious_prompts_combined.json"
   },
@@ -19,8 +19,8 @@
     "model_path": "models/anomaly_model.pkl"
   },
   "risk_thresholds": {
-    "block": 70.0,
-    "alert": 40.0,
+    "block": 65.0,
+    "alert": 35.0,
     "allow": 0.0
   }
 }
